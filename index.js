@@ -30,7 +30,7 @@ app.get("/api/:date?", function (req, res) {
   if(req.params.date==null){
     fecha=new Date();
     fe2=Math.floor(fecha.getTime());
-  }else if(req.params.date.includes("-")){
+  }else if(isNaN(Number(req.params.date))){
     fecha= new Date(req.params.date);
     fe2=Math.floor(fecha.getTime());
   }else{
