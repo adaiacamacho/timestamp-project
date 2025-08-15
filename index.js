@@ -29,13 +29,17 @@ app.get("/api/:date?", function (req, res) {
   let fe2;
   if(req.params.date==null){
     fecha=new Date();
-    fe2=Math.floor(fecha.getTime() / 1000);
+    fe2=Math.floor(fecha.getTime());
   }else if(req.params.date.includes("-")){
     fecha= new Date(req.params.date);
-    fe2=Math.floor(fecha.getTime() / 1000);
+    fe2=Math.floor(fecha.getTime());
   }else{
+    let temp=Number(req.params.date);
+    if(req.params.date.length==10){
+      temp=temp*1000;
+    }
     fe2=parseInt(req.params.date);
-    fecha=new Date(req.params.date*1000);
+    fecha=new Date(temp);
   }  
   let correcto=!isNaN(new Date(fecha));
   if(correcto){
